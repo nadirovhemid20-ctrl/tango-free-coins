@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12090c">
+<title>Tango Free Coins — Demo</title>
+<style>
+:root{--bg:#10090c;--panel:#1c1015;--red:#ff3155;--red2:#ff6b7f;--muted:#c5aeb4;--line:#49202b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#641326 0,#1a0c12 38%,#10090c 76%);color:#fff;font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:760px;margin:auto;padding:22px 16px 48px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;letter-spacing:.4px;color:#fff;font-size:20px}.brand span{color:var(--red)}.pill{border:1px solid #843044;border-radius:99px;padding:8px 12px;color:#ff9aaa;font-size:11px}
+.hero{text-align:center;padding:30px 12px 24px}.coin{width:118px;height:118px;border-radius:50%;margin:0 auto 15px;display:grid;place-items:center;font-size:54px;color:#fff;background:radial-gradient(circle at 35% 28%,#ffb2bf,#ff3155 44%,#8d102d 80%);border:6px solid #ff91a4;box-shadow:0 0 48px #ff315555,inset 0 0 0 4px #bd1839}.hero h1{font-size:30px;margin:8px 0}.hero p{color:var(--muted);margin:0 auto;max-width:470px;line-height:1.5}
+.balance{margin:22px auto 0;max-width:330px;padding:14px;border-radius:16px;background:#241018;border:1px solid var(--line)}.balance small{display:block;color:var(--muted)}.balance strong{font-size:28px;color:#ff9aaa}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(160deg,#28131b,#1a0e13);border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}.card h2{font-size:17px;margin:0 0 8px}.card p{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 14px}.wide{grid-column:1/-1}
+button{border:0;border-radius:12px;background:linear-gradient(100deg,#d91f43,#ff647b);color:white;font-weight:800;padding:11px 14px;cursor:pointer;width:100%;font-size:14px;box-shadow:0 5px 18px #d91f4333}button:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.task{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.task:first-of-type{border-top:0}.task b{font-size:14px}.task span{display:block;color:var(--muted);font-size:12px;margin-top:3px}.task button{width:auto;min-width:100px;padding:9px 12px}
+.notice{font-size:12px!important;color:#e5cbd1!important;background:#2b141c;border-radius:12px;padding:11px!important;margin-top:12px!important}
+.leader{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line);font-size:14px}.leader:first-of-type{border:0}.muted{color:var(--muted)}footer{text-align:center;color:#9a828a;font-size:11px;line-height:1.5;margin-top:22px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#ff647b;color:#fff;padding:12px 18px;border-radius:99px;font-weight:700;display:none;box-shadow:0 5px 25px #0008;max-width:90%;text-align:center}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero h1{font-size:26px}.wide{grid-column:auto}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<main>
+ <div class="top"><div class="brand">❤️ TANGO <span>FREE COINS</span></div><div class="pill">MÜSTƏQİL DEMO</div></div>
+ <section class="hero">
+  <div class="coin">🪙</div>
+  <h1>Bonuslarını topla!</h1>
+  <p>Gündəlik bonusları götür, demo tapşırıqları tamamla və Coin Club balansını artır.</p>
+  <div class="balance"><small>Sənin demo balansın</small><strong><span id="balance">0</span> COIN</strong></div>
+ </section>
+ <section class="grid">
+  <article class="card"><h2>🎁 Gündəlik bonus</h2><p>Hər 24 saatdan bir demo bonus götür.</p><button id="dailyBtn" onclick="claimDaily()">Bonus götür · +50</button></article>
+  <article class="card"><h2>⚡ Coin generator</h2><p>İnterfeysi yoxlamaq üçün demo generator.</p><button onclick="demoGenerate()">Demo sınaq · +10</button></article>
+  <article class="card wide"><h2>🎯 Tapşırıqlar</h2>
+   <div class="task"><div><b>Sayta ilk dəfə daxil ol</b><span>Birdəfəlik demo mükafatı</span></div><button id="welcomeBtn" onclick="claimTask('welcome',20)">Götür · +20</button></div>
+   <div class="task"><div><b>Bonus bölməsini yoxla</b><span>Birdəfəlik demo mükafatı</span></div><button id="bonusBtn" onclick="claimTask('bonus',15)">Götür · +15</button></div>
+   <div class="task"><div><b>Dost dəvəti</b><span>Server və real dəvət sistemi hələ qoşulmayıb</span></div><button disabled>Tezliklə</button></div>
+  </article>
+  <article class="card"><h2>👥 Dəvət sistemi</h2><p>Dəvət funksiyası növbəti mərhələdə serverlə qoşulacaq.</p><button onclick="showToast('Dəvət sistemi hələ demo rejimindədir')">Dəvət linki yarat</button></article>
+  <article class="card"><h2>🏆 Reytinq</h2>
+   <div class="leader"><span>🥇 Demo istifadəçi</span><b>1 250</b></div><div class="leader"><span>🥈 Coin Master</span><b>980</b></div><div class="leader"><span>🥉 Bonus Hunter</span><b>760</b></div><p class="muted" style="margin:10px 0 0">Nümunə məlumatlardır.</p>
+  </article>
+  <article class="card wide"><h2>ℹ️ Vacib məlumat</h2><p class="notice">Bu sayt Tango-nun rəsmi saytı deyil və Tango ilə əlaqəsi yoxdur. Buradakı xallar yalnız demo üçündür, Tango hesabındakı real jeton balansını artırmır. Tango şifrənizi və ödəniş məlumatlarınızı bu sayta daxil etməyin. Real mükafatlar yalnız rəsmi, icazəli kampaniyalarla verilə bilər.</p></article>
+ </section>
+ <footer>Tango Free Coins Demo · Rəsmi Tango xidməti deyil · Demo balansı bu brauzerdə saxlanılır</footer>
+</main><div id="toast"></div>
+<script>
+const KEY='tangofreecoins_demo_v1';let state=JSON.parse(localStorage.getItem(KEY)||'{"balance":0,"lastDaily":0,"tasks":[]}');
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function add(n){state.balance+=n;save();showToast('+'+n+' demo coin əlavə olundu')}
+function claimDaily(){const now=Date.now();if(now-state.lastDaily<86400000){showToast('Gündəlik bonus üçün 24 saat tamamlanmalıdır');return}state.lastDaily=now;add(50)}
+function demoGenerate(){add(10);showToast('Demo sınaq tamamlandı — Tango jetonu deyil')}
+function claimTask(id,n){if(state.tasks.includes(id)){showToast('Bu tapşırıq artıq tamamlanıb');return}state.tasks.push(id);add(n)}
+function render(){document.getElementById('balance').textContent=state.balance;document.getElementById('welcomeBtn').disabled=state.tasks.includes('welcome');document.getElementById('bonusBtn').disabled=state.tasks.includes('bonus');const left=86400000-(Date.now()-state.lastDaily);const b=document.getElementById('dailyBtn');b.disabled=!!state.lastDaily&&left>0;b.textContent=b.disabled?'Bonus 24 saatdan sonra':'Bonus götür · +50'}
+function showToast(s){const t=document.getElementById('toast');t.textContent=s;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2600)}
+render();
+</script>
+</body></html>
